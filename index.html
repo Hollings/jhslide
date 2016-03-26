@@ -2,9 +2,14 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <link href='https://fonts.googleapis.com/css?family=Raleway:400,600italic,200' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="jhslide.css">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+
 
 <script   src="https://code.jquery.com/jquery-2.2.2.js"   integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE="   crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="jhslide.css">
 <script type="text/javascript" src="jhslide.js"></script>
 <script>
 jQuery(document).ready(function(){
@@ -13,8 +18,15 @@ jQuery('.jhslide').jhslide();
 </script>
 
 <style type="text/css">
-	
+	body{
+		  font-family: 'Raleway', sans-serif;
+
+	}
 ul.jhslide{
+	max-width: 750px;
+	margin:0 auto;
+}
+code{
 	max-width: 750px;
 	margin:0 auto;
 }
@@ -22,9 +34,44 @@ ul.jhslide{
 </style>
 
 </head>
+<h1>Jhslide, the javascript slider.</h1>
 <ul class="jhslide">
   <li><h2>This is a slider</h2></li>
   <li><h3>There are no options</h3></li>
   <li><h4>Its just a few lines of javascript.</h4></li>
   <li><img src="http://dummyimage.com/400x250&text=And it is pretty buggy..." alt="" /></li>
 </ul>
+<h3>How do I use it?</h3>
+<p>Just download these files:</p>
+<ul>
+	<li><a href="jhslide.js">/jhslide.js</a></li>
+	<li><a href="jhslide.css">/jhslide.css</a></li>
+</ul>
+<p>Link them in your html like this:</p>
+<pre><code class="html">//You need jQuery
+&lt;script   src=&quot;https://code.jquery.com/jquery-2.2.2.js&quot;&gt;&lt;/script&gt;
+
+//jhslide files
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;jhslide.css&quot;&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;jhslide.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>And create "jhslide" class, like this:</p>
+<pre><code class="html">&lt;ul class=&quot;jhslide&quot;&gt;
+  &lt;li&gt;&lt;h2&gt;This is a slider&lt;/h2&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;h3&gt;There are no options&lt;/h3&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;h4&gt;Its just a few lines of javascript.&lt;/h4&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;img src=&quot;http://dummyimage.com/400x250&amp;text=And it is pretty buggy...&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<p>Finally, initialize it with js:</p>
+<pre><code class="html">&lt;script&gt;
+jQuery(document).ready(function(){
+jQuery('.jhslide').jhslide();
+});
+&lt;/script&gt;
+</code></pre>
+<script>$(document).ready(function() {
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});</script>
