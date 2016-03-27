@@ -1,14 +1,4 @@
-.jhslide li {
-    list-style: none;
-    text-align: center;
-    font-size: 40px;
-}
-.jhslide li h2,.jhslide li h3,.jhslide li h4{
-padding-top: 37px;
-}
-.jhslide li img{
-  margin:0 auto;
-}
+/* Main container */
 ul.jhslide {
   padding-left: 0;
   margin: 0;
@@ -17,6 +7,21 @@ ul.jhslide {
   overflow: hidden;
   border: 1px solid #ccc;
 }
+
+/* Each Slide */
+.jhslide li {
+    list-style: none;
+    text-align: center;
+    font-size: 40px;
+}
+.jhslide li img{
+  margin:0 auto;
+}
+.jhslide li h2,.jhslide li h3,.jhslide li h4{
+padding-top: 37px;
+}
+
+/* Navigation Buttons */
 .jhslider-left, .jhslider-right {
   cursor: pointer;
   position: absolute;
@@ -29,7 +34,7 @@ ul.jhslide {
   border-radius: 500px;
   height: 30px;
   width: 30px;
-      font-size: 30px;
+  font-size: 30px;
 }
 .jhslider-left {
   left: 3%;
