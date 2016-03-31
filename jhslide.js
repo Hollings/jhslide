@@ -120,18 +120,23 @@
         $(leftarrow)
             .click(function () {
                 slideBack();
+                if (slideList.length > 1) {
                 clearInterval(timer);
                 timer = setInterval(function () {
                     slideForward();
                 }, settings.time);
+              }
             });
         $(rightarrow)
             .click(function () {
                 slideForward();
                 clearInterval(timer);
+                if (slideList.length > 1) {
+                clearInterval(timer);
                 timer = setInterval(function () {
                     slideForward();
                 }, settings.time);
+              }
             });
         // Slide on bullet click, except for active bullet
         $('.jhslide-bullet')
@@ -144,10 +149,12 @@
                         .removeClass('active');
                     $(this)
                         .addClass('active');
-                    clearInterval(timer);
-                    timer = setInterval(function () {
-                        slideForward();
-                    }, settings.time);
+                        if (slideList.length > 1) {
+                        clearInterval(timer);
+                        timer = setInterval(function () {
+                            slideForward();
+                        }, settings.time);
+                      }
                 }
             });
 
