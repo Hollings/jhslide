@@ -58,6 +58,10 @@
                 .slideDown();
         }
 
+        // Get List of li
+        var slideList = this.find('li');
+        var currentSlide = 0;
+
         // Settings
         var settings = $.extend({
             time: 5000,
@@ -67,14 +71,12 @@
         // Add class to element
         this.addClass('jhslide-wrapper');
 
-        // Automatically Scroll
-        var timer = setInterval(function () {
-            slideForward();
-        }, settings.time);
-
-        // Get List of li
-        var slideList = this.find('li');
-        var currentSlide = 0;
+        // Automatically Scroll if more than one slide
+        if (slideList.length > 1) {
+          var timer = setInterval(function () {
+              slideForward();
+          }, settings.time);
+        }
 
         // Add Navigation
         var leftarrow = document.createElement('div');
@@ -148,7 +150,7 @@
                     }, settings.time);
                 }
             });
-            
+
         return this;
     };
 }(jQuery));
