@@ -4,6 +4,8 @@
 
     	// Control functions
     	function slideForward() {
+    		 resetProgressBar();
+
     		// Move forward or back to slide 1
             if (currentSlide == $(slideList)
                 .length - 1) {
@@ -27,6 +29,8 @@
         }
 
         function slideBack() {
+        	resetProgressBar();
+
         	// Move back or to last slide
             if (currentSlide == 0) {
                 $(slideList[currentSlide])
@@ -51,6 +55,7 @@
         }
 
         function slideTo(slide) {
+        	resetProgressBar();
             $(slideList[currentSlide])
                 .slideUp();
             currentSlide = parseInt(slide);
@@ -61,11 +66,28 @@
         // Get List of li
         var slideList = this.find('li');
         var currentSlide = 0;
+        var timerCount = 0;
+        var timerPerc = 0;
+        var progress; 
+
+        function resetProgressBar() {
+        	console.log("starting progressbar");
+        	timerCount = 0;
+        	timerPerc = 0;
+        	clearInterval(progress);
+        	progress = setInterval(function () {
+        		timerCount += 10;
+        		timerPerc = timerCount / settings.time * 100;
+            	$(".progress-bar").css("width",timerPerc.toString()+"%");
+          	}, 10);
+
+        }
+
+
 
         // Settings
         var settings = $.extend({
-            time: 5000,
-            auto: true,
+            time: 5000
         }, options);
 
         // Add class to element
@@ -76,6 +98,7 @@
           var timer = setInterval(function () {
               slideForward();
           }, settings.time);
+          resetProgressBar();
         }
 
         // Add Navigation
@@ -93,7 +116,10 @@
         $(bulletcontainer)
         	.addClass('bullet-container');
 
-        this.append(leftarrow, rightarrow, bulletcontainer);
+        var progressBar = document.createElement('div');
+        $(progressBar).addClass('progress-bar');
+
+        this.append(leftarrow, rightarrow, bulletcontainer, progressBar);
 
         // For each slide, add a bullet to navigation
         $.each(slideList, function (i) {
