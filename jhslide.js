@@ -86,7 +86,6 @@
         var progress;
 
         function resetProgressBar() {
-        	console.log("starting progressbar");
         	timerCount = 0;
         	timerPerc = 0;
         	clearInterval(progress);
@@ -187,7 +186,6 @@
         $(".playpause")
           .click(function () {
             if ($(this).hasClass("pause")) {
-              console.log("pause");
               $(this)
                 .removeClass("pause")
                 .addClass("play")
@@ -195,7 +193,6 @@
               playPause(true);
             }
             else{
-              console.log("play");
               $(this)
                 .removeClass("play")
                 .addClass("pause")
