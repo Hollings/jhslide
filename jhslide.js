@@ -5,7 +5,6 @@
     	// Control functions
     	function slideForward() {
     		 resetProgressBar();
-
     		// Move forward or back to slide 1
             if (currentSlide == $(slideList)
                 .length - 1) {
@@ -63,12 +62,28 @@
                 .slideDown();
         }
 
+
+        var playPause;
+        function playPause(playPause) {
+          if (playPause) {
+            clearInterval(progress);
+            clearInterval(timer);
+          }
+          else{
+            resetProgressBar();
+            timer = setInterval(function () {
+                slideForward();
+            }, settings.time);
+          }
+        }
+
+
         // Get List of li
         var slideList = this.find('li');
         var currentSlide = 0;
         var timerCount = 0;
         var timerPerc = 0;
-        var progress; 
+        var progress;
 
         function resetProgressBar() {
         	console.log("starting progressbar");
@@ -99,7 +114,7 @@
               slideForward();
           }, settings.time);
           resetProgressBar();
-        }
+
 
         // Add Navigation
         var leftarrow = document.createElement('div');
@@ -119,7 +134,12 @@
         var progressBar = document.createElement('div');
         $(progressBar).addClass('progress-bar');
 
-        this.append(leftarrow, rightarrow, bulletcontainer, progressBar);
+        var playPauseButton = document.createElement('div');
+        $(playPauseButton).addClass('playpause pause').html('<i class="fa fa-pause-circle"></i>');
+
+        this.append(leftarrow, rightarrow, bulletcontainer, progressBar, playPauseButton);
+
+        }
 
         // For each slide, add a bullet to navigation
         $.each(slideList, function (i) {
@@ -164,6 +184,27 @@
                 }, settings.time);
               }
             });
+        $(".playpause")
+          .click(function () {
+            if ($(this).hasClass("pause")) {
+              console.log("pause");
+              $(this)
+                .removeClass("pause")
+                .addClass("play")
+                .html('<i class="fa fa-play-circle"></i>');
+              playPause(true);
+            }
+            else{
+              console.log("play");
+              $(this)
+                .removeClass("play")
+                .addClass("pause")
+                .html('<i class="fa fa-pause-circle"></i>');
+              playPause(false);
+            }
+
+          });
+
         // Slide on bullet click, except for active bullet
         $('.jhslide-bullet')
             .click(function () {

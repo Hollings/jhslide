@@ -70,3 +70,9 @@ padding-top: 37px;
   height:1px;
   background-color: black;
 }
+.playpause{
+  position: absolute;
+left: 15px;
+bottom: 15px;
+cursor: pointer;
+}
